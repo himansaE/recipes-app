@@ -1,7 +1,7 @@
 import { Home } from "./components/routes/home";
 import { Login } from "./components/auth/login";
 import { Register } from "./components/auth/register";
-import { NavBar } from "./components/routes/navbar";
+import { NavBar } from "./components/navbar";
 import { Routes, Route } from "react-router-dom";
 import useInitSession from "./lib/hooks/useInitSession";
 import { AddPage } from "./components/routes/add";

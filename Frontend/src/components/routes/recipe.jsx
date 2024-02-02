@@ -15,7 +15,7 @@ export const RecipeRoute = () => {
   const navigate = useNavigate();
   let params = useParams();
 
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
 
   // load recipe data
   const loadData = async () => {
@@ -48,6 +48,8 @@ export const RecipeRoute = () => {
 
   useEffect(() => {
     if (loading) return;
+    if (!user) navigate("/login");
+
     loadData();
   }, [loading]);
 

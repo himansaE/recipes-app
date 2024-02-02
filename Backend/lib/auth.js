@@ -43,6 +43,7 @@ export const validateSession = async (req) => {
     const user = await User.findOne({
       email: session.email,
     });
+    //TODO:: check expire
     if (user == null) return false;
     return user;
   } else return false;

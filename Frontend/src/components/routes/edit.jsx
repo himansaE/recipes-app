@@ -25,7 +25,7 @@ export const EditRoute = () => {
   const navigate = useNavigate();
   let params = useParams();
 
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
 
   // load recipe data
   const loadData = async () => {
@@ -94,6 +94,8 @@ export const EditRoute = () => {
   };
   useEffect(() => {
     if (loading) return;
+    if (!user) navigate("/login");
+
     loadData();
   }, [loading]);
 
