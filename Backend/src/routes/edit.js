@@ -1,8 +1,7 @@
 import { apiDone, apiError } from "../../lib/api.js";
 import { validateSession } from "../../lib/auth.js";
 import { Recipe } from "../../lib/mongodb/schema.js";
-
-export const addRoute = async (req, res) => {
+export const editRoute = async (req, res) => {
   const user = await validateSession(req);
   if (user == false)
     return res.json(
@@ -13,16 +12,45 @@ export const addRoute = async (req, res) => {
     );
   const validated = validate(req.body);
   if (validated.done == false) return res.json(validated);
-  const { recipe_name, description, ingredients } = req.body;
+  const { recipe_name, description, ingredients, id } = req.body;
 
-  const recipe = await new Recipe({
-    recipe_name,
-    description,
+  // get the recipe by id and user id
+  let recipe_res;
+
+  // ignore error on wrong mongodb objectId, also database connection error
+  try {
+    recipe_res = await Recipe.findById(id);
+  } catch (e) {
+    return res.json(
+      apiError({
+        in: "all",
+        text: "Recipe not found.",
+      })
+    );
+  }
+  if (recipe_res == null)
+    return res.json(
+      apiError({
+        in: "all",
+        text: "Recipe not found.",
+      })
+    );
+
+  // block if recipe is not owned by this user
+  if (user.id != recipe_res.user_id)
+    return res.json(
+      apiError({
+        in: "all",
+        text: "Recipe not found.",
+      })
+    );
+
+  await Recipe.findByIdAndUpdate(id, {
     ingredients,
-    user_id: user.id,
-  }).save();
-
-  return res.json(apiDone(recipe.id));
+    description,
+    recipe_name,
+  });
+  return res.json(apiDone(id));
 };
 
 const validate = (data) => {

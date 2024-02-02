@@ -30,6 +30,7 @@ export const createSession = async (res, email) => {
   });
 };
 
+/**  validate user session by request*/
 export const validateSession = async (req) => {
   const id = req.cookies.session_id;
   const token = req.cookies.session_token;
