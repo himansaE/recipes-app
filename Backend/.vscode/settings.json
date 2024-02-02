@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "[Default Dark Modern]": {
+      "titleBar.activeBackground": "#1d1a4dcc",
+      "titleBar.activeForeground": "#f9f9f9"
+    }
+  },
+  "files.exclude": {
+    "**/dist": true
+  }
+}
