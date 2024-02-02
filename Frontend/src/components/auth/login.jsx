@@ -121,11 +121,7 @@ export function Login() {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link className="text-blue-700 hover:underline text-sm" to="#">
-                Forgot password?
-              </Link>
-            </Grid>
+            <Grid item xs></Grid>
             <Grid item>
               <Link
                 className="text-blue-700 hover:underline text-sm"

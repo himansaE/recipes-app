@@ -49,11 +49,13 @@ export const ListInput = (props) => {
           label="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          disabled={props.disabled}
         />
         <TextField
           label="Amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          disabled={props.disabled}
           onKeyUp={(e) => {
             // when press enter item added to list
             if (e.key === "Enter") {
@@ -67,6 +69,7 @@ export const ListInput = (props) => {
         variant="text"
         startIcon={<MdiPlusCircle />}
         className="!my-3"
+        disabled={props.disabled}
         onClick={(e) => {
           e.preventDefault();
           setValue();

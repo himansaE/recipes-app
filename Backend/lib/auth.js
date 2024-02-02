@@ -1,5 +1,5 @@
 import { hash, compare } from "bcrypt";
-import { Session } from "./mongodb/schema.js";
+import { Session, User } from "./mongodb/schema.js";
 export const hashPassword = async (pass) => {
   return await hash(pass, 10);
 };
@@ -28,4 +28,21 @@ export const createSession = async (res, email) => {
     maxAge: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   });
+};
+
+export const validateSession = async (req) => {
+  const id = req.cookies.session_id;
+  const token = req.cookies.session_token;
+  if (id == undefined || token == undefined) return false;
+
+  const session = await Session.findById(id);
+  if (session == null) return false;
+
+  if (await validatePassword(session.token, token)) {
+    const user = await User.findOne({
+      email: session.email,
+    });
+    if (user == null) return false;
+    return user;
+  } else return false;
 };

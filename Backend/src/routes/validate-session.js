@@ -1,6 +1,6 @@
 import { validatePassword } from "../../lib/auth.js";
 import { Session, User } from "../../lib/mongodb/schema.js";
-export const validateSession = async (req, res) => {
+export const validateSessionRoute = async (req, res) => {
   const id = req.cookies.session_id;
   const token = req.cookies.session_token;
   if (id == undefined || token == undefined) return res.json({});

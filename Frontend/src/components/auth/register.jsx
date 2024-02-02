@@ -32,6 +32,7 @@ export function Register() {
     if (err_in == undefined) return errorFunc({});
     errorFunc({ [err_in]: text });
   };
+
   const handleSubmit = async (event) => {
     if (is_submitting) return;
     setSubmitting(true);

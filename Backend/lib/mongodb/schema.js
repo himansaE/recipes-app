@@ -18,8 +18,8 @@ const ingredient = new Schema({
 });
 const recipe = new Schema({
   user_id: Schema.ObjectId,
-  title: String,
-  ingredient: [ingredient],
+  recipe_name: String,
+  ingredients: [ingredient],
   description: String,
 
   // serving_size: Number,
