@@ -1,8 +1,18 @@
-# React + Vite
+# Frontend for Recipe Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend part of the My Recipe Web Application. It provides the user interface for interacting with the application and managing recipes.
 
-Currently, two official plugins are available:
+## Setup Guide
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. This is how to setup frontend for this application.
+
+   ```bash
+   cd Frontend
+   npm i
+   ```
+
+1. run dev server
+
+   ```bash
+   npm run dev
+   ```
